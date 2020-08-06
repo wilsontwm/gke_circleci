@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 orbs:
   gcp-gke: circle/gcp-gke@0.1.0
 jobs:
