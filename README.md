@@ -1,4 +1,4 @@
-** About **
+## About ##
 
 This is to automate the deployment of containers on GKE using CircleCI.
 
