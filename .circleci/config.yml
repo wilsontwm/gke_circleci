@@ -1,6 +1,6 @@
 version: 2
 orbs:
-  gcp-gke: circle/gcp-gke@1.1.0
+  gke: circle/gcp-gke@1.1.0
 jobs:
   build:
     docker:
@@ -41,10 +41,10 @@ jobs:
   deploy:
     machine: true
     steps:
-      - gcp-gke/install
-      - gcp-gke/update-kubeconfig-with-credentials:
+      - gke/install
+      - gke/update-kubeconfig-with-credentials:
           cluster: ${GCLOUD_CLUSTER}
-      - gcp-gke/rollout-image:
+      - gke/rollout-image:
           cluster: ${GCLOUD_CLUSTER}
           deployment: hello-world
           container: hello-world
