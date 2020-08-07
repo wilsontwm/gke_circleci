@@ -12,7 +12,7 @@ import (
 var HelloWorld = func(w http.ResponseWriter, r *http.Request) {
 	resp := make(map[string]interface{})
 	result := make(map[string]interface{})
-	utils.Success(w, http.StatusOK, resp, result, "Hello world from Golang.")
+	utils.Success(w, http.StatusOK, resp, result, "Hello world from Golang. See you again!")
 }
 
 // MovieList (GET) : Get list of movies from TMDB via discovery
