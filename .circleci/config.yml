@@ -52,7 +52,6 @@ jobs:
           container: hello-world
           image: ${DOCKER_IMAGE}
           tag: ${CIRCLE_SHA1}
-          namespace: sandbox
 
 workflows:
   version: 2.1
