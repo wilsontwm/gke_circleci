@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   gke: circleci/gcp-gke@1.1.0
+  gcr: circleci/gcp-gcr@0.8.0
 jobs:
   build:
     docker:
@@ -42,6 +43,7 @@ jobs:
     machine: true
     steps:
       - gke/install
+      - gcr/gcr-auth
       - gke/update-kubeconfig-with-credentials:
           cluster: ${GCLOUD_CLUSTER}
       - gke/rollout-image:
