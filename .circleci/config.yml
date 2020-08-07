@@ -1,6 +1,6 @@
 version: 2
 orbs:
-  gcp-gke: circle/gcp-gke@0.1.0
+  gcp-gke: circle/gcp-gke@1.1.0
 jobs:
   build:
     docker:
@@ -37,6 +37,20 @@ jobs:
             docker build -t ${DOCKER_IMAGE}:${CIRCLE_SHA1} -t ${DOCKER_IMAGE}:latest . -f Dockerfile
             docker push ${DOCKER_IMAGE}:${CIRCLE_SHA1}
             docker push ${DOCKER_IMAGE}:latest
+  
+  deploy:
+    machine: true
+    steps:
+      - gcp-gke/install
+      - gcp-gke/update-kubeconfig-with-credentials:
+          cluster: ${GCLOUD_CLUSTER}
+      - gcp-gke/rollout-image:
+          cluster: ${GCLOUD_CLUSTER}
+          deployment: hello-world
+          container: hello-world
+          image: ${DOCKER_IMAGE}
+          tag: ${CIRCLE_SHA1}
+          namespace: sandbox
 
 workflows:
   version: 2
@@ -52,6 +66,14 @@ workflows:
       - dockerize:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
+
+      - deploy:
+          requires:
+            - dockerize
           filters:
             branches:
               only:
