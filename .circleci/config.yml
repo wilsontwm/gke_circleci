@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 orbs:
   gke: circle/gcp-gke@1.1.0
 jobs:
@@ -39,7 +39,7 @@ jobs:
             docker push ${DOCKER_IMAGE}:latest
   
   deploy:
-    executor: gke/default
+    machine: true
     steps:
       - gke/install
       - gke/update-kubeconfig-with-credentials:
@@ -53,7 +53,7 @@ jobs:
           namespace: sandbox
 
 workflows:
-  version: 2
+  version: 2.1
   build:
     jobs:
       - build:
