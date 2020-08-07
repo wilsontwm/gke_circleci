@@ -42,8 +42,8 @@ jobs:
   deploy:
     machine: true
     steps:
-      - gke/install
       - gcr/gcr-auth
+      - gke/install
       - gke/update-kubeconfig-with-credentials:
           cluster: ${GCLOUD_CLUSTER}
       - gke/rollout-image:
