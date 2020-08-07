@@ -42,6 +42,10 @@ jobs:
   deploy:
     machine: true
     steps:
+      - run:
+          name: Set Environment
+          command: |
+            echo 'export DOCKER_IMAGE=wilsontanwm/gotest' >> $BASH_ENV
       - gcr/gcr-auth
       - gke/install
       - gke/update-kubeconfig-with-credentials:
