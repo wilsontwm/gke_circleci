@@ -39,7 +39,7 @@ jobs:
             docker push ${DOCKER_IMAGE}:latest
   
   deploy:
-    machine: true
+    executor: gke/default
     steps:
       - gke/install
       - gke/update-kubeconfig-with-credentials:
