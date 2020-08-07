@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  gke: circle/gcp-gke@1.1.0
+  gke: circleci/gcp-gke@1.1.0
 jobs:
   build:
     docker:
