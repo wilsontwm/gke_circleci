@@ -22,7 +22,7 @@ jobs:
       - setup_remote_docker
       - checkout
       - docker/check
-       - docker/build:
+      - docker/build:
           image: wilsontanwm/gotest
       - docker/push:
           image: wilsontanwm/gotest
