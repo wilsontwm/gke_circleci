@@ -17,7 +17,7 @@ jobs:
             cd test && go test -v
   
   dockerize:
-    machine: true
+    executor: docker/docker
     steps:
       - setup_remote_docker
       - checkout
